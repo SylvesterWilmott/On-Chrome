@@ -15,6 +15,6 @@
     "message": "Prevent display from going to sleep"
   },
   "OPTIONS_AUTO_DOWNLOAD": {
-    "message": "Automatically activate while files are downloading"
+    "message": "Activate while downloading files"
   }
 }

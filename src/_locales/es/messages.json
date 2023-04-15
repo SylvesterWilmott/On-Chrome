@@ -1,20 +1,20 @@
 {
   "EXT_NAME": {
-    "message": "On - Mantén tu sistema despierto"
+    "message": "On - Mantenga su sistema activo"
   },
   "EXT_NAME_SHORT": {
     "message": "On"
   },
   "EXT_DESCRIPTION": {
-    "message": "Evita que tu sistema entre en modo de suspensión o que la pantalla se apague."
+    "message": "Evite que su sistema entre en modo de suspensión o que su pantalla se apague."
   },
   "OPTION_SOUNDS": {
     "message": "Sonidos"
   },
   "OPTION_DISPLAY_SLEEP": {
-    "message": "Evita que la pantalla entre en modo de suspensión"
+    "message": "Evitar que la pantalla se apague"
   },
   "OPTIONS_AUTO_DOWNLOAD": {
-    "message": "Activar automáticamente mientras se descargan archivos"
+    "message": "Activar mientras se descargan archivos"
   }
 }

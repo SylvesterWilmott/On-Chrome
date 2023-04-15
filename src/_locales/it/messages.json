@@ -6,15 +6,15 @@
     "message": "On"
   },
   "EXT_DESCRIPTION": {
-    "message": "Evita che il tuo sistema vada in standby o che il display si spenga."
+    "message": "Impedisci al tuo sistema di entrare in modalità sospensione o al tuo display di spegnersi."
   },
   "OPTION_SOUNDS": {
     "message": "Suoni"
   },
   "OPTION_DISPLAY_SLEEP": {
-    "message": "Evita l'andare in standby del display"
+    "message": "Impedisci lo spegnimento del display"
   },
   "OPTIONS_AUTO_DOWNLOAD": {
-    "message": "Attiva automaticamente durante il download dei file"
+    "message": "Attiva durante il download dei file"
   }
 }

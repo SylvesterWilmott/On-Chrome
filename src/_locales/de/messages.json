@@ -6,15 +6,15 @@
     "message": "On"
   },
   "EXT_DESCRIPTION": {
-    "message": "Verhindern Sie, dass Ihr System in den Ruhezustand geht oder Ihr Display ausgeschaltet wird."
+    "message": "Verhindern Sie, dass Ihr System in den Ruhezustand geht oder Ihr Bildschirm sich ausschaltet."
   },
   "OPTION_SOUNDS": {
-    "message": "Sounds"
+    "message": "Töne"
   },
   "OPTION_DISPLAY_SLEEP": {
-    "message": "Verhindern Sie das Ausschalten des Displays"
+    "message": "Verhindern Sie das Ausschalten des Bildschirms"
   },
   "OPTIONS_AUTO_DOWNLOAD": {
-    "message": "Automatisch aktivieren, während Dateien heruntergeladen werden"
+    "message": "Aktivieren während des Herunterladens von Dateien"
   }
 }
