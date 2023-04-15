@@ -1,0 +1,20 @@
+{
+  "EXT_NAME": {
+    "message": "On - Halten Sie Ihr System wach"
+  },
+  "EXT_NAME_SHORT": {
+    "message": "On"
+  },
+  "EXT_DESCRIPTION": {
+    "message": "Verhindern Sie, dass Ihr System in den Ruhezustand geht oder Ihr Display ausgeschaltet wird."
+  },
+  "OPTION_SOUNDS": {
+    "message": "Sounds"
+  },
+  "OPTION_DISPLAY_SLEEP": {
+    "message": "Verhindern Sie das Ausschalten des Displays"
+  },
+  "OPTIONS_AUTO_DOWNLOAD": {
+    "message": "Automatisch aktivieren, während Dateien heruntergeladen werden"
+  }
+}

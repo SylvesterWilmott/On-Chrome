@@ -1,0 +1,60 @@
+:root {
+    color-scheme: light;
+    --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+      "Helvetica Neue", Arial, sans-serif;
+    --primary: #B52700;
+    --primary-variant: #E23200;
+    --on-primary: #ffffff;
+    --primary-container: #FFDAD2;
+    --on-primary-container: #3D0700;
+    --secondary: #77574F;
+    --on-secondary: #ffffff;
+    --secondary-container: #FFDAD2;
+    --on-secondary-container: #2C1510;
+    --tertiary: #6D5D2E;
+    --on-tertiary: #ffffff;
+    --tertiary-container: #F8E1A6;
+    --on-tertiary-container: #241A00;
+    --surface: #FFF8F6;
+    --surface-container-highest: #EDE0DD;
+    --outline: #85736F;
+    --on-surface: #201A19;
+    --on-surface-variant: #534340;
+    --neutral-primary: #120D0C; /* Neutral 4 */
+    --neutral-secondary: #7F7573; /* Neutral 50 */
+    --neutral-tertiary: #D0C4C1; /* Neutral 80 */
+    --neutral-quaternary: #F8EBE8; /* Neutral 94 */
+    --options-separator: rgba(0, 0, 0, 0.07);
+    --background: #ffffff;
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+      --primary: #FFB4A3;
+      --primary-variant: #FFB4A3;
+      --on-primary: #621000;
+      --primary-container: #8A1B00;
+      --on-primary-container: #FFDAD2;
+      --secondary: #E7BDB3;
+      --on-secondary: #442A23;
+      --secondary-container: #5D3F38;
+      --on-secondary-container: #FFDAD2;
+      --tertiary: #DAC58C;
+      --on-tertiary: #3C2F04;
+      --tertiary-container: #544519;
+      --on-tertiary-container: #F8E1A6;
+      --surface: #181211; /* Surface bright */
+      --surface-container-highest: #3B3331;
+      --outline: #A08C88;
+      --on-surface: #D0C4C1;
+      --on-surface-variant: #D8C2BD;
+      --neutral-primary: #F8EBE8; /* Neutral 94 */
+      --neutral-secondary: #B4A9A6; /* Neutral 70 */
+      --neutral-tertiary: #655C5A; /* Neutral 40 */
+      --neutral-quaternary: #4D4543; /* Neutral 30 */
+      --options-separator: rgba(255, 255, 255, 0.1);
+      --background: #28292C;
+    }
+  }

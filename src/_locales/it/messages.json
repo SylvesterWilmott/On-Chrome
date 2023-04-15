@@ -1,0 +1,20 @@
+{
+  "EXT_NAME": {
+    "message": "On - Mantieni il tuo sistema attivo"
+  },
+  "EXT_NAME_SHORT": {
+    "message": "On"
+  },
+  "EXT_DESCRIPTION": {
+    "message": "Evita che il tuo sistema vada in standby o che il display si spenga."
+  },
+  "OPTION_SOUNDS": {
+    "message": "Suoni"
+  },
+  "OPTION_DISPLAY_SLEEP": {
+    "message": "Evita l'andare in standby del display"
+  },
+  "OPTIONS_AUTO_DOWNLOAD": {
+    "message": "Attiva automaticamente durante il download dei file"
+  }
+}

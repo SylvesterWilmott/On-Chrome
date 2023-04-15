@@ -1,0 +1,20 @@
+{
+  "EXT_NAME": {
+    "message": "On - Держите систему включенной"
+  },
+  "EXT_NAME_SHORT": {
+    "message": "On"
+  },
+  "EXT_DESCRIPTION": {
+    "message": "Предотвратите выключение вашей системы или отключение экрана."
+  },
+  "OPTION_SOUNDS": {
+    "message": "Звуки"
+  },
+  "OPTION_DISPLAY_SLEEP": {
+    "message": "Предотвратить отключение экрана"
+  },
+  "OPTIONS_AUTO_DOWNLOAD": {
+    "message": "Автоматически активировать при загрузке файлов"
+  }
+}

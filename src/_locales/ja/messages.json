@@ -1,0 +1,20 @@
+{
+  "EXT_NAME": {
+    "message": "On - システムを起動し続けます"
+  },
+  "EXT_NAME_SHORT": {
+    "message": "On"
+  },
+  "EXT_DESCRIPTION": {
+    "message": "システムのスリープやディスプレイのオフを防止します。"
+  },
+  "OPTION_SOUNDS": {
+    "message": "サウンド"
+  },
+  "OPTION_DISPLAY_SLEEP": {
+    "message": "ディスプレイのスリープを防止する"
+  },
+  "OPTIONS_AUTO_DOWNLOAD": {
+    "message": "ファイルのダウンロード中に自動的にアクティベートする"
+  }
+}

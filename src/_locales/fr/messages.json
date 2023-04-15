@@ -1,0 +1,20 @@
+{
+  "EXT_NAME": {
+    "message": "On - Gardez votre système éveillé"
+  },
+  "EXT_NAME_SHORT": {
+    "message": "On"
+  },
+  "EXT_DESCRIPTION": {
+    "message": "Empêchez votre système de se mettre en veille ou votre écran de s'éteindre."
+  },
+  "OPTION_SOUNDS": {
+    "message": "Sons"
+  },
+  "OPTION_DISPLAY_SLEEP": {
+    "message": "Empêcher l'écran de se mettre en veille"
+  },
+  "OPTIONS_AUTO_DOWNLOAD": {
+    "message": "Activation automatique pendant le téléchargement de fichiers"
+  }
+}

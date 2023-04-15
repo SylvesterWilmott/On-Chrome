@@ -1,0 +1,20 @@
+{
+  "EXT_NAME": {
+    "message": "On - Keep your system awake"
+  },
+  "EXT_NAME_SHORT": {
+    "message": "On"
+  },
+  "EXT_DESCRIPTION": {
+    "message": "Prevent your system from going to sleep or your display from turning off."
+  },
+  "OPTION_SOUNDS": {
+    "message": "Sounds"
+  },
+  "OPTION_DISPLAY_SLEEP": {
+    "message": "Prevent display from going to sleep"
+  },
+  "OPTIONS_AUTO_DOWNLOAD": {
+    "message": "Automatically activate while files are downloading"
+  }
+}
