@@ -1,7 +1,7 @@
 {
     "name": "__MSG_EXT_NAME__",
     "description": "__MSG_EXT_DESCRIPTION__",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "manifest_version": 3,
     "default_locale": "en",
     "icons": {
@@ -15,7 +15,7 @@
       "service_worker": "background.js",
       "type": "module"
     },
-    "permissions": ["power", "idle", "storage", "offscreen"],
+    "permissions": ["power", "idle", "storage", "offscreen", "alarms", "contextMenus"],
     "optional_permissions": ["downloads"],
     "action": {
       "default_title": "__MSG_EXT_NAME_SHORT__"
