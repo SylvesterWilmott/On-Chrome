@@ -16,5 +16,32 @@
   },
   "OPTIONS_AUTO_DOWNLOAD": {
     "message": "ファイルのダウンロード中に自動的に有効にする"
+  },
+  "MENU_DURATION_PARENT": {
+    "message": "時間の長さ"
+  },
+  "MENU_DURATION_10": {
+    "message": "10分"
+  },
+  "MENU_DURATION_30": {
+    "message": "30分"
+  },
+  "MENU_DURATION_60": {
+    "message": "1時間"
+  },
+  "MENU_DURATION_240": {
+    "message": "4時間"
+  },
+  "MENU_DURATION_480": {
+    "message": "8時間"
+  },
+  "MENU_DURATION_720": {
+    "message": "12時間"
+  },
+  "MINUTES_ABBREVIATION": {
+    "message": "分"
+  },
+  "HOURS_ABBREVIATION": {
+    "message": "時間"
   }
 }
