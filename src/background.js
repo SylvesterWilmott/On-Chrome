@@ -24,7 +24,7 @@ async function init () {
   try {
     await Promise.all([
       action.setBadgeColor('#AE2F32'),
-      await initializeMenu()
+      initializeMenu()
     ])
   } catch (error) {
     console.error('An error occurred:', error)
@@ -230,10 +230,8 @@ async function onIdleStateChanged (state) {
     })
 
   if (currentStatus) {
-    power.releaseKeepAwake()
-
     try {
-      await Promise.all([updateIcon(false), saveState(false)])
+      await turnOff()
     } catch (error) {
       console.error('An error occurred:', error)
     }
