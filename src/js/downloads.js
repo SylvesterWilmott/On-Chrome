@@ -4,7 +4,7 @@
 
 export function search (state) {
   return new Promise((resolve, reject) => {
-    chrome.downloads.search({ state: 'in_progress' }, function (downloads) {
+    chrome.downloads.search({ state: state }, function (downloads) {
       if (chrome.runtime.lastError) {
         reject(chrome.runtime.lastError.message)
       }
