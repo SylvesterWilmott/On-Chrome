@@ -36,7 +36,7 @@ async function init () {
   initializePermissions()
 }
 
-async function onStartup() {
+async function onStartup () {
   try {
     await action.setBadgeColor('#AE2F32')
   } catch (error) {
@@ -97,15 +97,15 @@ async function onAlarmTick () {
       console.error('An error occurred:', error)
     })
 
-    if (currentStatus === false) {
-      try {
-        await alarm.clear('timer')
-      } catch (error) {
-        console.error('An error occurred:', error)
-      }
-
-      return
+  if (currentStatus === false) {
+    try {
+      await alarm.clear('timer')
+    } catch (error) {
+      console.error('An error occurred:', error)
     }
+
+    return
+  }
 
   let remainingDuration = await storage
     .loadSession('timer', 10)
