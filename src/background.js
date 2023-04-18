@@ -12,6 +12,7 @@ import * as alarm from './js/alarms.js'
 import * as action from './js/action.js'
 
 chrome.runtime.onInstalled.addListener(init)
+chrome.runtime.onStartup.addListener(onStartup)
 chrome.permissions.onAdded.addListener(initializePermissions)
 chrome.permissions.onRemoved.addListener(initializePermissions)
 chrome.action.onClicked.addListener(onActionClicked)
@@ -33,6 +34,28 @@ async function init () {
 
   chrome.idle.setDetectionInterval(60)
   initializePermissions()
+}
+
+async function onStartup() {
+  try {
+    await action.setBadgeColor('#AE2F32')
+  } catch (error) {
+    console.error('An error occurred:', error)
+  }
+
+  chrome.idle.setDetectionInterval(60)
+
+  const existingTimer = await alarm.get('timer').catch((error) => {
+    console.error('An error occurred:', error)
+  })
+
+  if (existingTimer) {
+    try {
+      await alarm.clear('timer')
+    } catch (error) {
+      console.error('An error occurred:', error)
+    }
+  }
 }
 
 async function onMenuClick (info) {
@@ -68,6 +91,22 @@ async function onMenuClick (info) {
 }
 
 async function onAlarmTick () {
+  const currentStatus = await storage
+    .loadSession('status', false)
+    .catch((error) => {
+      console.error('An error occurred:', error)
+    })
+
+    if (currentStatus === false) {
+      try {
+        await alarm.clear('timer')
+      } catch (error) {
+        console.error('An error occurred:', error)
+      }
+
+      return
+    }
+
   let remainingDuration = await storage
     .loadSession('timer', 10)
     .catch((error) => {
