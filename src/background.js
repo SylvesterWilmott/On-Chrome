@@ -7,79 +7,164 @@ import * as storage from './js/storage.js'
 import * as offscreen from './js/offscreen.js'
 import * as message from './js/message.js'
 import * as downloads from './js/downloads.js'
+import * as menu from './js/menus.js'
+import * as alarm from './js/alarms.js'
+import * as action from './js/action.js'
 
-chrome.idle.setDetectionInterval(60)
-
-chrome.runtime.onInstalled.addListener(initializePermissions)
+chrome.runtime.onInstalled.addListener(init)
 chrome.permissions.onAdded.addListener(initializePermissions)
 chrome.permissions.onRemoved.addListener(initializePermissions)
 chrome.action.onClicked.addListener(onActionClicked)
 chrome.idle.onStateChanged.addListener(onIdleStateChanged)
 chrome.storage.onChanged.addListener(onStorageChanged)
+chrome.contextMenus.onClicked.addListener(onMenuClick)
+chrome.alarms.onAlarm.addListener(onAlarmTick)
 
-async function turnOn () {
-  let storedPreferences
-
+async function init () {
   try {
-    storedPreferences = await storage.load(
-      'preferences',
-      storage.preferenceDefaults
-    )
+    await Promise.all([
+      action.setBadgeColor('#FFDEA8'),
+      await initializeMenu()
+    ])
   } catch (error) {
     console.error('An error occurred:', error)
     return
   }
 
-  if (storedPreferences.sounds.status === true) playSound('click')
+  chrome.idle.setDetectionInterval(60)
+  initializePermissions()
+}
 
-  if (storedPreferences.displaySleep.status === true) {
-    power.keepAwake('display')
-  } else {
-    power.keepAwake('system')
+async function onMenuClick (info) {
+  const menuId = info.menuItemId
+
+  const durations = ['10', '30', '60', '240', '480']
+  if (!durations.includes(menuId.replace('timer_', ''))) return
+
+  const existingTimer = await alarm.get('timer').catch((error) => {
+    console.error('An error occurred:', error)
+  })
+
+  if (existingTimer) {
+    try {
+      await alarm.clear('timer')
+    } catch (error) {
+      console.error('An error occurred:', error)
+    }
   }
 
-  updateIcon(true)
+  const timerDuration = parseInt(menuId.replace('timer_', ''))
 
   try {
-    await saveState(true)
+    await Promise.all([
+      storage.saveSession('timer', timerDuration),
+      action.setBadge(getFormattedDuration(timerDuration.toString())),
+      alarm.create('timer', 1, 1),
+      turnOn()
+    ])
+  } catch (error) {
+    console.error('An error occurred:', error)
+  }
+}
+
+async function onAlarmTick () {
+  let remainingDuration = await storage
+    .loadSession('timer', 10)
+    .catch((error) => {
+      console.error('An error occurred:', error)
+    })
+
+  if (remainingDuration > 0) {
+    remainingDuration--
+
+    try {
+      await Promise.all([
+        storage.saveSession('timer', remainingDuration),
+        action.setBadge(getFormattedDuration(remainingDuration.toString())),
+        alarm.create('timer', 1, 1)
+      ])
+    } catch (error) {
+      console.error('An error occurred:', error)
+    }
+  } else {
+    try {
+      await turnOff()
+    } catch (error) {
+      console.error('An error occurred:', error)
+    }
+  }
+}
+
+async function turnOn () {
+  const storedPreferences = await storage
+    .load('preferences', storage.preferenceDefaults)
+    .catch((error) => {
+      console.error('An error occurred:', error)
+    })
+
+  if (storedPreferences.sounds.status) {
+    try {
+      await playSound('click')
+    } catch (error) {
+      console.error('An error occurred:', error)
+    }
+  }
+
+  power.keepAwake(storedPreferences.displaySleep.status ? 'display' : 'system')
+
+  try {
+    await Promise.all([updateIcon(true), saveState(true)])
   } catch (error) {
     console.error('An error occurred:', error)
   }
 }
 
 async function turnOff () {
-  let storedPreferences
+  const storedPreferences = await storage
+    .load('preferences', storage.preferenceDefaults)
+    .catch((error) => {
+      console.error('An error occurred:', error)
+    })
 
-  try {
-    storedPreferences = await storage.load(
-      'preferences',
-      storage.preferenceDefaults
-    )
-  } catch (error) {
-    console.error('An error occurred:', error)
-    return
+  if (storedPreferences.sounds.status) {
+    try {
+      await playSound('beep')
+    } catch (error) {
+      console.error('An error occurred:', error)
+    }
   }
 
-  if (storedPreferences.sounds.status === true) playSound('beep')
-
   power.releaseKeepAwake()
-  updateIcon(false)
 
   try {
-    await saveState(false)
+    await Promise.all([
+      action.setBadge(''),
+      updateIcon(false),
+      saveState(false)
+    ])
   } catch (error) {
     console.error('An error occurred:', error)
+  }
+
+  const existingTimer = await alarm.get('timer').catch((error) => {
+    console.error('An error occurred:', error)
+  })
+
+  if (existingTimer) {
+    try {
+      await alarm.clear('timer')
+    } catch (error) {
+      console.error('An error occurred:', error)
+    }
   }
 }
 
 async function onActionClicked () {
-  let currentStatus
-
-  try {
-    currentStatus = await storage.loadSession('status', false)
-  } catch {
-    currentStatus = false
-  }
+  const currentStatus = await storage
+    .loadSession('status', false)
+    .catch((error) => {
+      console.error('An error occurred:', error)
+    })
 
   if (currentStatus === true) {
     try {
@@ -98,26 +183,25 @@ async function onActionClicked () {
 
 async function playSound (sound) {
   const documentPath = 'audio-player.html'
-
-  let hasDocument
-
-  try {
-    hasDocument = await offscreen.hasDocument(documentPath)
-  } catch (error) {
-    console.error('An error occurred:', error)
-    return
-  }
+  const hasDocument = await offscreen
+    .hasDocument(documentPath)
+    .catch((error) => {
+      console.error('An error occurred:', error)
+    })
 
   if (!hasDocument) {
     try {
       await offscreen.create(documentPath)
     } catch (error) {
       console.error('An error occurred:', error)
-      return
     }
   }
 
-  message.send({ msg: 'play_sound', sound })
+  try {
+    await message.send({ msg: 'play_sound', sound })
+  } catch (error) {
+    console.error('An error occurred:', error)
+  }
 }
 
 async function saveState (state) {
@@ -128,42 +212,87 @@ async function saveState (state) {
   }
 }
 
-function updateIcon (state) {
-  switch (state) {
-    case true:
-      chrome.action.setIcon({ path: './images/icon32_active.png' })
-      break
-    case false:
-      chrome.action.setIcon({ path: './images/icon32.png' })
-      break
+async function updateIcon (state) {
+  try {
+    await action.setIcon(`./images/icon32${state ? '_active' : ''}.png`)
+  } catch (error) {
+    console.error('An error occurred:', error)
   }
 }
 
 async function onIdleStateChanged (state) {
-  if (state === 'locked') {
-    let currentStatus
+  if (state !== 'locked') return
+
+  const currentStatus = await storage
+    .loadSession('status', false)
+    .catch((error) => {
+      console.error('An error occurred:', error)
+    })
+
+  if (currentStatus) {
+    power.releaseKeepAwake()
 
     try {
-      currentStatus = await storage.loadSession('status', false)
-    } catch {
-      currentStatus = false
-    }
-
-    if (currentStatus === true) {
-      power.releaseKeepAwake()
-
-      try {
-        await saveState(!currentStatus)
-      } catch (error) {
-        console.error('An error occurred:', error)
-      }
-
-      updateIcon(!currentStatus)
+      await Promise.all([updateIcon(false), saveState(false)])
+    } catch (error) {
+      console.error('An error occurred:', error)
     }
   }
 }
 
-async function initializePermissions () {
+async function initializeMenu () {
+  const menuItems = [
+    {
+      title: chrome.i18n.getMessage('MENU_DURATION_PARENT'),
+      contexts: ['action'],
+      id: 'h_1'
+    },
+    {
+      title: chrome.i18n.getMessage('MENU_DURATION_10'),
+      contexts: ['action'],
+      id: 'timer_10',
+      parentId: 'h_1'
+    },
+    {
+      title: chrome.i18n.getMessage('MENU_DURATION_30'),
+      contexts: ['action'],
+      id: 'timer_10',
+      parentId: 'h_1'
+    },
+    {
+      title: chrome.i18n.getMessage('MENU_DURATION_60'),
+      contexts: ['action'],
+      id: 'timer_60',
+      parentId: 'h_1'
+    },
+    {
+      title: chrome.i18n.getMessage('MENU_DURATION_240'),
+      contexts: ['action'],
+      id: 'timer_240',
+      parentId: 'h_1'
+    },
+    {
+      title: chrome.i18n.getMessage('MENU_DURATION_480'),
+      contexts: ['action'],
+      id: 'timer_480',
+      parentId: 'h_1'
+    },
+    {
+      title: chrome.i18n.getMessage('MENU_DURATION_720'),
+      contexts: ['action'],
+      id: 'timer_720',
+      parentId: 'h_1'
+    }
+  ]
+
+  try {
+    await menu.create(menuItems)
+  } catch (error) {
+    console.error('An error occurred:', error)
+  }
+}
+
+function initializePermissions () {
   chrome.permissions.contains(
     {
       permissions: ['downloads']
@@ -178,69 +307,48 @@ async function initializePermissions () {
 }
 
 async function onDownloadCreated () {
-  let currentStatus
+  const currentStatus = await storage
+    .loadSession('status', false)
+    .catch((error) => {
+      console.error('An error occurred:', error)
+    })
 
-  try {
-    currentStatus = await storage.loadSession('status', false)
-  } catch {
-    currentStatus = false
-  }
+  const storedPreferences = await storage
+    .load('preferences', storage.preferenceDefaults)
+    .catch((error) => {
+      console.error('An error occurred:', error)
+    })
 
-  let storedPreferences
-
-  try {
-    storedPreferences = await storage.load(
-      'preferences',
-      storage.preferenceDefaults
-    )
-  } catch (error) {
-    console.error('An error occurred:', error)
-    return
-  }
-
-  if (
-    currentStatus === false &&
-    storedPreferences.autoDownloads.status === true
-  ) {
-    turnOn()
+  if (!currentStatus && storedPreferences?.autoDownloads.status) {
+    try {
+      await turnOn()
+    } catch (error) {
+      console.error('An error occurred:', error)
+    }
   }
 }
 
 async function onDownloadsChanged () {
-  let allDownloads
-
-  try {
-    allDownloads = await downloads.search('in_progress')
-  } catch (error) {
+  const allDownloads = await downloads.search('in_progress').catch((error) => {
     console.error('An error occurred:', error)
-    return
-  }
+  })
 
-  let hasInProgressDownloads = false
+  const hasInProgressDownloads = allDownloads.some(
+    (download) => download.state === 'in_progress'
+  )
 
-  for (const download of allDownloads) {
-    if (download.state === 'in_progress') {
-      hasInProgressDownloads = true
+  const storedPreferences = await storage
+    .load('preferences', storage.preferenceDefaults)
+    .catch((error) => {
+      console.error('An error occurred:', error)
+    })
+
+  if (!hasInProgressDownloads && storedPreferences.autoDownloads.status) {
+    try {
+      await turnOff()
+    } catch (error) {
+      console.error('An error occurred:', error)
     }
-  }
-
-  let storedPreferences
-
-  try {
-    storedPreferences = await storage.load(
-      'preferences',
-      storage.preferenceDefaults
-    )
-  } catch (error) {
-    console.error('An error occurred:', error)
-    return
-  }
-
-  if (
-    !hasInProgressDownloads &&
-    storedPreferences.autoDownloads.status === true
-  ) {
-    turnOff()
   }
 }
 
@@ -249,23 +357,35 @@ async function onStorageChanged (changes, areaName) {
 
   const { oldValue, newValue } = changes.preferences
 
-  if (!oldValue || !newValue || oldValue.displaySleep.status === newValue.displaySleep.status) return
+  if (
+    !oldValue ||
+    !newValue ||
+    oldValue.displaySleep.status === newValue.displaySleep.status
+  ) { return }
 
-  let currentStatus
-
-  try {
-    currentStatus = await storage.loadSession('status', false)
-  } catch {
-    currentStatus = false
-  }
+  const currentStatus = await storage
+    .loadSession('status', false)
+    .catch((error) => {
+      console.error('An error occurred:', error)
+    })
 
   if (currentStatus !== true) return
 
   power.releaseKeepAwake()
+  power.keepAwake(newValue.displaySleep.status ? 'display' : 'system')
+}
 
-  if (newValue.displaySleep.status === true) {
-    power.keepAwake('display')
-  } else {
-    power.keepAwake('system')
+function getFormattedDuration (duration) {
+  if (duration === 0) {
+    return duration.toString() + chrome.i18n.getMessage('MINUTES_ABBREVIATION')
   }
+
+  const hours = Math.floor(duration / 60)
+  const minutes = duration % 60
+
+  const formatted = []
+  if (hours > 0) formatted.push(hours.toString() + chrome.i18n.getMessage('HOURS_ABBREVIATION'))
+  if (minutes > 0) { formatted.push(hours > 0 ? minutes.toString() : minutes.toString() + chrome.i18n.getMessage('MINUTES_ABBREVIATION')) }
+
+  return formatted.join('')
 }
