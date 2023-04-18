@@ -16,32 +16,5 @@
   },
   "OPTIONS_AUTO_DOWNLOAD": {
     "message": "Activer pendant le téléchargement de fichiers"
-  },
-  "MENU_DURATION_PARENT": {
-    "message": "Durée"
-  },
-  "MENU_DURATION_10": {
-    "message": "10 minutes"
-  },
-  "MENU_DURATION_30": {
-    "message": "30 minutes"
-  },
-  "MENU_DURATION_60": {
-    "message": "1 heure"
-  },
-  "MENU_DURATION_240": {
-    "message": "4 heures"
-  },
-  "MENU_DURATION_480": {
-    "message": "8 heures"
-  },
-  "MENU_DURATION_720": {
-    "message": "12 heures"
-  },
-  "MINUTES_ABBREVIATION": {
-    "message": "min"
-  },
-  "HOURS_ABBREVIATION": {
-    "message": "h"
   }
 }
