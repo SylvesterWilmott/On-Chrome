@@ -23,7 +23,7 @@ chrome.alarms.onAlarm.addListener(onAlarmTick)
 async function init () {
   try {
     await Promise.all([
-      action.setBadgeColor('#FFDEA8'),
+      action.setBadgeColor('#AE2F32'),
       await initializeMenu()
     ])
   } catch (error) {
@@ -38,7 +38,7 @@ async function init () {
 async function onMenuClick (info) {
   const menuId = info.menuItemId
 
-  const durations = ['10', '30', '60', '240', '480']
+  const durations = ['10', '30', '60', '240', '480', '720']
   if (!durations.includes(menuId.replace('timer_', ''))) return
 
   const existingTimer = await alarm.get('timer').catch((error) => {
