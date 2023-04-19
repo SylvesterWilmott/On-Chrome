@@ -29,14 +29,6 @@ async function turnOn () {
       console.error('An error occurred:', error)
     })
 
-  if (storedPreferences.sounds.status) {
-    try {
-      await playSound('click')
-    } catch (error) {
-      console.error('An error occurred:', error)
-    }
-  }
-
   power.keepAwake(storedPreferences.displaySleep.status ? 'display' : 'system')
 
   try {
@@ -47,20 +39,6 @@ async function turnOn () {
 }
 
 async function turnOff () {
-  const storedPreferences = await storage
-    .load('preferences', storage.preferenceDefaults)
-    .catch((error) => {
-      console.error('An error occurred:', error)
-    })
-
-  if (storedPreferences.sounds.status) {
-    try {
-      await playSound('beep')
-    } catch (error) {
-      console.error('An error occurred:', error)
-    }
-  }
-
   power.releaseKeepAwake()
 
   try {
@@ -80,17 +58,39 @@ async function onActionClicked () {
       console.error('An error occurred:', error)
     })
 
+    const storedPreferences = await storage
+    .load('preferences', storage.preferenceDefaults)
+    .catch((error) => {
+      console.error('An error occurred:', error)
+    })
+
   if (currentStatus === true) {
     try {
       await turnOff()
     } catch (error) {
       console.error('An error occurred:', error)
     }
+
+    if (storedPreferences.sounds.status) {
+      try {
+        await playSound('beep')
+      } catch (error) {
+        console.error('An error occurred:', error)
+      }
+    }
   } else {
     try {
       await turnOn()
     } catch (error) {
       console.error('An error occurred:', error)
+    }
+
+    if (storedPreferences.sounds.status) {
+      try {
+        await playSound('click')
+      } catch (error) {
+        console.error('An error occurred:', error)
+      }
     }
   }
 }
