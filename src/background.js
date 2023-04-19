@@ -10,7 +10,7 @@ import * as downloads from './js/downloads.js'
 import * as action from './js/action.js'
 
 chrome.runtime.onInstalled.addListener(init)
-chrome.runtime.onStartup.addListener(onStartup)
+chrome.runtime.onStartup.addListener(init)
 chrome.permissions.onAdded.addListener(initializePermissions)
 chrome.permissions.onRemoved.addListener(initializePermissions)
 chrome.action.onClicked.addListener(onActionClicked)
@@ -22,24 +22,12 @@ async function init () {
   initializePermissions()
 }
 
-async function onStartup () {
-  chrome.idle.setDetectionInterval(60)
-}
-
 async function turnOn () {
   const storedPreferences = await storage
     .load('preferences', storage.preferenceDefaults)
     .catch((error) => {
       console.error('An error occurred:', error)
     })
-
-  if (storedPreferences.sounds.status) {
-    try {
-      await playSound('click')
-    } catch (error) {
-      console.error('An error occurred:', error)
-    }
-  }
 
   power.keepAwake(storedPreferences.displaySleep.status ? 'display' : 'system')
 
@@ -51,20 +39,6 @@ async function turnOn () {
 }
 
 async function turnOff () {
-  const storedPreferences = await storage
-    .load('preferences', storage.preferenceDefaults)
-    .catch((error) => {
-      console.error('An error occurred:', error)
-    })
-
-  if (storedPreferences.sounds.status) {
-    try {
-      await playSound('beep')
-    } catch (error) {
-      console.error('An error occurred:', error)
-    }
-  }
-
   power.releaseKeepAwake()
 
   try {
@@ -84,17 +58,39 @@ async function onActionClicked () {
       console.error('An error occurred:', error)
     })
 
+    const storedPreferences = await storage
+    .load('preferences', storage.preferenceDefaults)
+    .catch((error) => {
+      console.error('An error occurred:', error)
+    })
+
   if (currentStatus === true) {
     try {
       await turnOff()
     } catch (error) {
       console.error('An error occurred:', error)
     }
+
+    if (storedPreferences.sounds.status) {
+      try {
+        await playSound('beep')
+      } catch (error) {
+        console.error('An error occurred:', error)
+      }
+    }
   } else {
     try {
       await turnOn()
     } catch (error) {
       console.error('An error occurred:', error)
+    }
+
+    if (storedPreferences.sounds.status) {
+      try {
+        await playSound('click')
+      } catch (error) {
+        console.error('An error occurred:', error)
+      }
     }
   }
 }
@@ -171,6 +167,16 @@ function initializePermissions () {
 }
 
 async function onDownloadCreated () {
+  const allDownloads = await downloads.search('in_progress').catch((error) => {
+    console.error('An error occurred:', error)
+  })
+
+  const hasInProgressDownloads = allDownloads.some(
+    (download) => download.state === 'in_progress'
+  )
+
+  if (!hasInProgressDownloads) return
+
   const currentStatus = await storage
     .loadSession('status', false)
     .catch((error) => {
@@ -183,7 +189,7 @@ async function onDownloadCreated () {
       console.error('An error occurred:', error)
     })
 
-  if (!currentStatus && storedPreferences?.autoDownloads.status) {
+  if (hasInProgressDownloads && !currentStatus && storedPreferences?.autoDownloads.status) {
     try {
       await turnOn()
     } catch (error) {
@@ -201,13 +207,21 @@ async function onDownloadsChanged () {
     (download) => download.state === 'in_progress'
   )
 
+  if (hasInProgressDownloads) return
+
+  const currentStatus = await storage
+    .loadSession('status', false)
+    .catch((error) => {
+      console.error('An error occurred:', error)
+    })
+
   const storedPreferences = await storage
     .load('preferences', storage.preferenceDefaults)
     .catch((error) => {
       console.error('An error occurred:', error)
     })
 
-  if (!hasInProgressDownloads && storedPreferences.autoDownloads.status) {
+  if (!hasInProgressDownloads && currentStatus && storedPreferences.autoDownloads.status) {
     try {
       await turnOff()
     } catch (error) {
