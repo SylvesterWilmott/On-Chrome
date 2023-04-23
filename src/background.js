@@ -27,6 +27,8 @@ chrome.permissions.contains(
   }
 )
 
+const throttledplaySound = throttle(playSound, 100)
+
 async function turnOn () {
   const storedPreferences = await storage
     .load('preferences', storage.preferenceDefaults)
@@ -35,11 +37,7 @@ async function turnOn () {
     })
 
   if (storedPreferences.sounds.status) {
-    try {
-      await playSound('click')
-    } catch (error) {
-      console.error('An error occurred:', error)
-    }
+    throttledplaySound('click')
   }
 
   power.keepAwake(storedPreferences.displaySleep.status ? 'display' : 'system')
@@ -59,11 +57,7 @@ async function turnOff () {
     })
 
   if (storedPreferences.sounds.status) {
-    try {
-      await playSound('beep')
-    } catch (error) {
-      console.error('An error occurred:', error)
-    }
+    throttledplaySound('beep')
   }
 
   power.releaseKeepAwake()
@@ -249,4 +243,17 @@ async function onStorageChanged (changes, areaName) {
 
   power.releaseKeepAwake()
   power.keepAwake(newValue.displaySleep.status ? 'display' : 'system')
+}
+
+function throttle (func, delay) {
+  let lastExecTime = 0
+  return function () {
+    const context = this
+    const args = arguments
+    const now = Date.now()
+    if (now - lastExecTime >= delay) {
+      lastExecTime = now
+      func.apply(context, args)
+    }
+  }
 }
