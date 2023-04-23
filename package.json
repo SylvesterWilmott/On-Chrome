@@ -1,7 +1,7 @@
 {
   "name": "on",
   "productName": "On",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Prevent your system from going to sleep or your display from turning off.",
   "author": "Sylvester Wilmott",
   "license": "GPL-3.0",
