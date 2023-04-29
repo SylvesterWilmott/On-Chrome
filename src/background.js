@@ -63,7 +63,7 @@ async function turnOff () {
   power.releaseKeepAwake()
 
   try {
-    await Promise.all([updateIcon(false), saveState(false)])
+    await Promise.all([updateIcon(false), saveState(false), saveDownloadInProgressFlag(false)])
   } catch (error) {
     console.error('An error occurred:', error)
   }
@@ -117,6 +117,14 @@ async function playSound (sound) {
 async function saveState (state) {
   try {
     await storage.saveSession('status', state)
+  } catch (error) {
+    console.error('An error occurred:', error)
+  }
+}
+
+async function saveDownloadInProgressFlag (state) {
+  try {
+    await storage.saveSession('downloadInProgress', state)
   } catch (error) {
     console.error('An error occurred:', error)
   }
@@ -177,7 +185,7 @@ async function onDownloadCreated () {
     storedPreferences?.autoDownloads.status
   ) {
     try {
-      await turnOn()
+      await Promise.all([turnOn(), saveDownloadInProgressFlag(true)])
     } catch (error) {
       console.error('An error occurred:', error)
     }
@@ -201,6 +209,12 @@ async function onDownloadsChanged () {
       console.error('An error occurred:', error)
     })
 
+  const wasActivatedByDownload = await storage
+    .loadSession('downloadInProgress', false)
+    .catch((error) => {
+      console.error('An error occurred:', error)
+    })
+
   const storedPreferences = await storage
     .load('preferences', storage.preferenceDefaults)
     .catch((error) => {
@@ -208,6 +222,7 @@ async function onDownloadsChanged () {
     })
 
   if (
+    wasActivatedByDownload &&
     !hasInProgressDownloads &&
     currentStatus &&
     storedPreferences.autoDownloads.status
