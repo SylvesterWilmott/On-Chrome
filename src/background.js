@@ -18,7 +18,7 @@ chrome.action.onClicked.addListener(onActionClicked)
 chrome.idle.onStateChanged.addListener(onIdleStateChanged)
 chrome.storage.onChanged.addListener(onStorageChanged)
 chrome.contextMenus.onClicked.addListener(onMenuClick)
-chrome.alarms.onAlarm.addListener(onAlarmTick)
+chrome.alarms.onAlarm.addListener(onAlarm)
 
 async function init () {
   try {
@@ -28,6 +28,7 @@ async function init () {
     ])
   } catch (error) {
     console.error('An error occurred:', error)
+    return
   }
 }
 
@@ -127,7 +128,7 @@ async function onMenuClick (info) {
   }
 }
 
-async function onAlarmTick () {
+async function onAlarm () {
   let remainingDuration = await storage
     .loadSession('timer', 10)
     .catch((error) => {
