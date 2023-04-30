@@ -28,7 +28,6 @@ async function init () {
     ])
   } catch (error) {
     console.error('An error occurred:', error)
-    return
   }
 }
 
@@ -205,7 +204,7 @@ async function turnOff () {
       console.error('An error occurred:', error)
     }
   }
-  
+
   const currentStatus = await storage
     .loadSession('status', false)
     .catch((error) => {
