@@ -1,5 +1,8 @@
 # On
 
+![Chrome Web Store](https://img.shields.io/chrome-web-store/v/obckhgeniaimlkdblodnpngfbenmclfp)
+![Chrome Web Store](https://img.shields.io/chrome-web-store/users/obckhgeniaimlkdblodnpngfbenmclfp)
+
 On is a Chrome extension that lets you prevent your system from going to sleep or your display from turning off.
 
 ## Installation
