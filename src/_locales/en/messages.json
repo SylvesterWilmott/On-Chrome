@@ -8,13 +8,31 @@
   "EXT_DESCRIPTION": {
     "message": "Keep your system awake whenever you need it or during extended downloads."
   },
-  "OPTION_SOUNDS": {
+  "OPTIONS": {
+    "message": "Options"
+  },
+  "GENERAL": {
+    "message": "General"
+  },
+  "EXTENSION": {
+    "message": "Extension"
+  },
+  "RATE": {
+    "message": "Rate On"
+  },
+  "OPTIONS_SOUNDS": {
     "message": "Sounds"
   },
-  "OPTION_DISPLAY_SLEEP": {
+  "OPTIONS_DISPLAY_SLEEP": {
     "message": "Prevent display from going to sleep"
   },
   "OPTIONS_AUTO_DOWNLOAD": {
     "message": "Activate while downloading files"
+  },
+  "OPTIONS_AUTO_DOWNLOAD_MORE": {
+    "message": "Automatically activate when a download starts"
+  },
+  "OPTIONS_SOUNDS_MORE": {
+    "message": "Play a sound when activating/deactivating the extension"
   }
 }

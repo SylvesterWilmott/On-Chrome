@@ -8,13 +8,31 @@
   "EXT_DESCRIPTION": {
     "message": "Halten Sie Ihr System wach, wann immer Sie es benötigen oder während längerer Downloads."
   },
-  "OPTION_SOUNDS": {
+  "OPTIONS": {
+    "message": "Optionen"
+  },
+  "GENERAL": {
+    "message": "Allgemein"
+  },
+  "EXTENSION": {
+    "message": "Erweiterung"
+  },
+  "RATE": {
+    "message": "On bewerten"
+  },
+  "OPTIONS_SOUNDS": {
     "message": "Töne"
   },
-  "OPTION_DISPLAY_SLEEP": {
+  "OPTIONS_DISPLAY_SLEEP": {
     "message": "Verhindern Sie das Ausschalten des Bildschirms"
   },
   "OPTIONS_AUTO_DOWNLOAD": {
     "message": "Aktivieren während des Herunterladens von Dateien"
+  },
+  "OPTIONS_AUTO_DOWNLOAD_MORE": {
+    "message": "Automatisch aktivieren, wenn ein Download beginnt"
+  },
+  "OPTIONS_SOUNDS_MORE": {
+    "message": "Ein Geräusch abspielen, wenn die Erweiterung aktiviert/deaktiviert wird"
   }
 }

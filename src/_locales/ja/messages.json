@@ -8,13 +8,31 @@
   "EXT_DESCRIPTION": {
     "message": "必要な時または長時間のダウンロード中、システムがスリープ状態にならないようにする拡張機能でシステムをアクティブに保ちます。"
   },
-  "OPTION_SOUNDS": {
+  "OPTIONS": {
+    "message": "オプション"
+  },
+  "GENERAL": {
+    "message": "一般"
+  },
+  "EXTENSION": {
+    "message": "拡張機能"
+  },
+  "RATE": {
+    "message": "On を評価する"
+  },
+  "OPTIONS_SOUNDS": {
     "message": "サウンド"
   },
-  "OPTION_DISPLAY_SLEEP": {
+  "OPTIONS_DISPLAY_SLEEP": {
     "message": "ディスプレイのスリープを防止"
   },
   "OPTIONS_AUTO_DOWNLOAD": {
     "message": "ファイルのダウンロード中に自動的に有効にする"
+  },
+  "OPTIONS_AUTO_DOWNLOAD_MORE": {
+    "message": "ダウンロードが開始されたときに自動的に有効化する"
+  },
+  "OPTIONS_SOUNDS_MORE": {
+    "message": "拡張機能の有効化/無効化時にサウンドを再生する"
   }
 }

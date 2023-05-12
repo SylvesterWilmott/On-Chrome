@@ -7,11 +7,14 @@
     <script type="module" src="../js/options.js"></script>
   </head>
   <body class="hidden">
-    <div class="container">
-      <div class="row-group">
-        <div class="row">
+    <div class="options">
+      <h1 data-localize="OPTIONS"></h1>
+      <h2 class="heading" data-localize="GENERAL"></h2>
+      <div class="container">
+        <label for="sounds" class="row row-multiple">
           <div class="left-detail">
-            <label for="sounds" class="label" data-localize="OPTION_SOUNDS"></label>
+            <p class="label" data-localize="OPTIONS_SOUNDS"></p>
+            <p class="subtitle" data-localize="OPTIONS_SOUNDS_MORE">P</p>
           </div>
           <div class="right-detail">
             <label class="switch">
@@ -19,10 +22,10 @@
               <span class="track no-transition"></span>
             </label>
           </div>
-        </div>
-        <div class="row">
+        </label>
+        <label for="displaySleep" class="row row-single">
           <div class="left-detail">
-            <label for="displaySleep" class="label" data-localize="OPTION_DISPLAY_SLEEP"></label>
+            <p class="label" data-localize="OPTIONS_DISPLAY_SLEEP"></p>
           </div>
           <div class="right-detail">
             <label class="switch">
@@ -30,10 +33,11 @@
               <span class="track no-transition"></span>
             </label>
           </div>
-        </div>
-        <div class="row">
+        </label>
+        <label for="autoDownloads" class="row row-multiple">
           <div class="left-detail">
-            <label for="autoDownloads" class="label" data-localize="OPTIONS_AUTO_DOWNLOAD"></label>
+            <p class="label" data-localize="OPTIONS_AUTO_DOWNLOAD"></p>
+            <p class="subtitle" data-localize="OPTIONS_AUTO_DOWNLOAD_MORE"></p>
           </div>
           <div class="right-detail">
             <label class="switch">
@@ -41,7 +45,18 @@
               <span class="track no-transition"></span>
             </label>
           </div>
-        </div>
+        </label>
+      </div>
+      <h2 class="heading" data-localize="EXTENSION"></h2>
+      <div class="container">
+        <label class="row row-single">
+          <div class="left-detail">
+            <button id="rate" data-localize="RATE"></button>
+          </div>
+          <div class="right-detail">
+            <div class="external"></div>
+          </div>
+        </label>
       </div>
     </div>
   </body>
