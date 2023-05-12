@@ -4,6 +4,7 @@
 
 import * as storage from './storage.js'
 import * as i18n from './localize.js'
+import * as tabs from './tabs.js'
 
 document.addEventListener('DOMContentLoaded', init)
 
@@ -49,6 +50,12 @@ function registerListeners () {
 
   for (const checkbox of checkboxes) {
     checkbox.addEventListener('change', onCheckBoxChanged)
+  }
+
+  const buttons = document.querySelectorAll('button')
+
+  for (const button of buttons) {
+    button.addEventListener('click', onButtonClicked)
   }
 }
 
@@ -132,5 +139,19 @@ async function onCheckBoxChanged (e) {
   } catch (error) {
     console.error('An error occurred:', error)
     target.checked = !target.checked
+  }
+}
+
+async function onButtonClicked (e) {
+  const target = e.target
+  const targetId = target.id
+
+  if (targetId === 'rate') {
+    try {
+      const url = `https://chrome.google.com/webstore/detail/${chrome.runtime.id}/reviews`
+      await tabs.create(url)
+    } catch (error) {
+      console.error('An error occurred:', error)
+    }
   }
 }
