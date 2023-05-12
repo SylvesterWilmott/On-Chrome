@@ -8,13 +8,31 @@
   "EXT_DESCRIPTION": {
     "message": "Держите систему включенной, когда вам это нужно, или во время продолжительных загрузок, с помощью этого мощного расширения."
   },
-  "OPTION_SOUNDS": {
+  "OPTIONS": {
+    "message": "Опции"
+  },
+  "GENERAL": {
+    "message": "Общее"
+  },
+  "EXTENSION": {
+    "message": "Расширение"
+  },
+  "RATE": {
+    "message": "Оценить On"
+  },
+  "OPTIONS_SOUNDS": {
     "message": "Звуки"
   },
-  "OPTION_DISPLAY_SLEEP": {
+  "OPTIONS_DISPLAY_SLEEP": {
     "message": "Предотвратить отключение экрана"
   },
   "OPTIONS_AUTO_DOWNLOAD": {
     "message": "Активировать во время загрузки файлов"
+  },
+  "OPTIONS_AUTO_DOWNLOAD_MORE": {
+    "message": "Автоматически активировать при начале загрузки"
+  },
+  "OPTIONS_SOUNDS_MORE": {
+    "message": "Проигрывать звук при активации/деактивации расширения"
   }
 }

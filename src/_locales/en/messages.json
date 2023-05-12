@@ -23,9 +23,6 @@
   "OPTIONS_SOUNDS": {
     "message": "Sounds"
   },
-  "OPTIONS_SOUNDS_MORE": {
-    "message": "Play a sound when activating/deactivating the extension"
-  },
   "OPTIONS_DISPLAY_SLEEP": {
     "message": "Prevent display from going to sleep"
   },
@@ -34,5 +31,8 @@
   },
   "OPTIONS_AUTO_DOWNLOAD_MORE": {
     "message": "Automatically activate when a download starts"
+  },
+  "OPTIONS_SOUNDS_MORE": {
+    "message": "Play a sound when activating/deactivating the extension"
   }
 }

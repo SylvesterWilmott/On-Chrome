@@ -8,13 +8,31 @@
   "EXT_DESCRIPTION": {
     "message": "Maintenez votre système éveillé chaque fois que vous en avez besoin ou pendant les téléchargements prolongés."
   },
-  "OPTION_SOUNDS": {
+  "OPTIONS": {
+    "message": "Options"
+  },
+  "GENERAL": {
+    "message": "Général"
+  },
+  "EXTENSION": {
+    "message": "Extension"
+  },
+  "RATE": {
+    "message": "Noter On"
+  },
+  "OPTIONS_SOUNDS": {
     "message": "Sons"
   },
-  "OPTION_DISPLAY_SLEEP": {
+  "OPTIONS_DISPLAY_SLEEP": {
     "message": "Empêcher l'écran de passer en veille"
   },
   "OPTIONS_AUTO_DOWNLOAD": {
     "message": "Activer pendant le téléchargement de fichiers"
-  }
+  },
+  "OPTIONS_AUTO_DOWNLOAD_MORE": {
+    "message": "Activer automatiquement lorsqu'un téléchargement démarre"
+    },
+    "OPTIONS_SOUNDS_MORE": {
+    "message": "Jouer un son lors de l'activation/désactivation de l'extension"
+    }
 }

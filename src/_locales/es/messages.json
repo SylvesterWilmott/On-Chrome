@@ -8,13 +8,31 @@
   "EXT_DESCRIPTION": {
     "message": "Mantenga su sistema despierto siempre que lo necesite o durante descargas prolongadas."
   },
-  "OPTION_SOUNDS": {
+  "OPTIONS": {
+    "message": "Opciones"
+  },
+  "GENERAL": {
+    "message": "General"
+  },
+  "EXTENSION": {
+    "message": "Extensión"
+  },
+  "RATE": {
+    "message": "Calificar On"
+  },
+  "OPTIONS_SOUNDS": {
     "message": "Sonidos"
   },
-  "OPTION_DISPLAY_SLEEP": {
+  "OPTIONS_DISPLAY_SLEEP": {
     "message": "Evitar que la pantalla se apague"
   },
   "OPTIONS_AUTO_DOWNLOAD": {
     "message": "Activar mientras se descargan archivos"
+  },
+  "OPTIONS_AUTO_DOWNLOAD_MORE": {
+    "message": "Activar automáticamente cuando comienza una descarga"
+  },
+  "OPTIONS_SOUNDS_MORE": {
+    "message": "Reproducir un sonido al activar/desactivar la extensión"
   }
 }
