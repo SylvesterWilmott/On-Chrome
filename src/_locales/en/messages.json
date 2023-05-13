@@ -8,20 +8,8 @@
   "EXT_DESCRIPTION": {
     "message": "Keep your system awake whenever you need it or during extended downloads."
   },
-  "OPTIONS": {
-    "message": "Options"
-  },
-  "GENERAL": {
-    "message": "General"
-  },
-  "EXTENSION": {
-    "message": "Extension"
-  },
   "RATE": {
     "message": "Rate On"
-  },
-  "SHORTCUT": {
-    "message": "Shortcut"
   },
   "OPTIONS_SOUNDS": {
     "message": "Sounds"

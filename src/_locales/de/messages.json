@@ -8,20 +8,8 @@
   "EXT_DESCRIPTION": {
     "message": "Halten Sie Ihr System wach, wann immer Sie es benötigen oder während längerer Downloads."
   },
-  "OPTIONS": {
-    "message": "Optionen"
-  },
-  "GENERAL": {
-    "message": "Allgemein"
-  },
-  "EXTENSION": {
-    "message": "Erweiterung"
-  },
   "RATE": {
     "message": "On bewerten"
-  },
-  "SHORTCUT": {
-    "message": "Verknüpfung"
   },
   "OPTIONS_SOUNDS": {
     "message": "Töne"

@@ -8,20 +8,8 @@
   "EXT_DESCRIPTION": {
     "message": "Mantenga su sistema despierto siempre que lo necesite o durante descargas prolongadas."
   },
-  "OPTIONS": {
-    "message": "Opciones"
-  },
-  "GENERAL": {
-    "message": "General"
-  },
-  "EXTENSION": {
-    "message": "Extensión"
-  },
   "RATE": {
     "message": "Calificar On"
-  },
-  "SHORTCUT": {
-    "message": "Atajo"
   },
   "OPTIONS_SOUNDS": {
     "message": "Sonidos"

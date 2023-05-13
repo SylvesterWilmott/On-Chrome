@@ -1,35 +1,23 @@
 {
   "EXT_NAME": {
-    "message": "On - システムをアクティブに維持"
+    "message": "On - Mantieni il tuo sistema attivo"
   },
   "EXT_NAME_SHORT": {
     "message": "On"
   },
   "EXT_DESCRIPTION": {
-    "message": "必要な時または長時間のダウンロード中、システムがスリープ状態にならないようにする拡張機能でシステムをアクティブに保ちます。"
-  },
-  "OPTIONS": {
-    "message": "オプション"
-  },
-  "GENERAL": {
-    "message": "一般"
-  },
-  "EXTENSION": {
-    "message": "拡張機能"
+    "message": "Mantieni il tuo sistema sempre attivo quando ne hai bisogno o durante i download prolungati."
   },
   "RATE": {
-    "message": "On を評価する"
-  },
-  "SHORTCUT": {
-    "message": "ショートカット"
+    "message": "Valuta On"
   },
   "OPTIONS_SOUNDS": {
-    "message": "サウンド"
+    "message": "Suoni"
   },
   "OPTIONS_DISPLAY_SLEEP": {
-    "message": "ディスプレイのスリープを防止"
+    "message": "Impedisci lo spegnimento del display"
   },
   "OPTIONS_AUTO_DOWNLOAD": {
-    "message": "ファイルのダウンロード中に自動的に有効にする"
+    "message": "Attiva durante il download dei file"
   }
 }

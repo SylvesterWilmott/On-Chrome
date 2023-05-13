@@ -8,20 +8,8 @@
   "EXT_DESCRIPTION": {
     "message": "Держите систему включенной, когда вам это нужно, или во время продолжительных загрузок, с помощью этого мощного расширения."
   },
-  "OPTIONS": {
-    "message": "Опции"
-  },
-  "GENERAL": {
-    "message": "Общее"
-  },
-  "EXTENSION": {
-    "message": "Расширение"
-  },
   "RATE": {
     "message": "Оценить On"
-  },
-  "SHORTCUT": {
-    "message": "Ярлык"
   },
   "OPTIONS_SOUNDS": {
     "message": "Звуки"
