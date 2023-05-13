@@ -8,20 +8,8 @@
   "EXT_DESCRIPTION": {
     "message": "Mantieni il tuo sistema sempre attivo quando ne hai bisogno o durante i download prolungati."
   },
-  "OPTIONS": {
-    "message": "Opzioni"
-  },
-  "GENERAL": {
-    "message": "Generale"
-  },
-  "EXTENSION": {
-    "message": "Estensione"
-  },
   "RATE": {
     "message": "Valuta On"
-  },
-  "SHORTCUT": {
-    "message": "Scorciatoia"
   },
   "OPTIONS_SOUNDS": {
     "message": "Suoni"
@@ -31,5 +19,11 @@
   },
   "OPTIONS_AUTO_DOWNLOAD": {
     "message": "Attiva durante il download dei file"
+  },
+  "OPTIONS_AUTO_DOWNLOAD_MORE": {
+    "message": "Attivare automaticamente quando parte un download"
+  },
+  "OPTIONS_SOUNDS_MORE": {
+    "message": "Riprodurre un suono quando si attiva/disattiva l'estensione"
   }
 }

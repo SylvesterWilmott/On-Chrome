@@ -8,20 +8,8 @@
   "EXT_DESCRIPTION": {
     "message": "Maintenez votre système éveillé chaque fois que vous en avez besoin ou pendant les téléchargements prolongés."
   },
-  "OPTIONS": {
-    "message": "Options"
-  },
-  "GENERAL": {
-    "message": "Général"
-  },
-  "EXTENSION": {
-    "message": "Extension"
-  },
   "RATE": {
     "message": "Noter On"
-  },
-  "SHORTCUT": {
-    "message": "Raccourci"
   },
   "OPTIONS_SOUNDS": {
     "message": "Sons"
