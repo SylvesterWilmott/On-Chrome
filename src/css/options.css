@@ -55,14 +55,7 @@ h1 {
   box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.15), 0px 2px 3px 0px rgba(0,0,0,0.2);
   margin-bottom: 16px;
   overflow: hidden;
-}
-
-.chrome .container {
   border-radius: 8px;
-}
-
-.edge .container {
-  border-radius: 4px;
 }
 
 .heading {
@@ -88,12 +81,11 @@ label.row:hover {
   color: var(--neutral-primary);
   width: 100%;
   font-size: 13px;
-  cursor: pointer;
   line-height: 1.5;
 }
 
 button {
-  color: var(--primary);
+  color: var(--neutral-primary);
   appearance: none;
   border: none;
   background: transparent;
@@ -104,20 +96,16 @@ button {
   line-height: 1.5;
 }
 
+button.action-primary {
+  color: var(--primary);
+}
+
 .switch {
   position: relative;
   display: inline-block;
   cursor: pointer;
-}
-
-.chrome .switch {
   width: 28px;
   height: 12px;
-}
-
-.edge .switch {
-  width: 40px;
-  height: 20px;
 }
 
 .switch input {
@@ -133,24 +121,13 @@ button {
   bottom: 0;
   transition: 0.4s;
   border-radius: 16px;
-}
-
-.chrome .track {
   background-color: var(--track);
-}
-
-.edge .track {
-  background-color: transparent;
-  box-shadow: inset 0px 0px 0px 1px var(--neutral-secondary);
 }
 
 .track:before {
   position: absolute;
   content: "";
   transition: 0.4s;
-}
-
-.chrome .track:before {
   height: 16px;
   width: 16px;
   left: -3px;
@@ -160,16 +137,7 @@ button {
   box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.15), 0px 2px 3px 0px rgba(0,0,0,0.2);
 }
 
-.edge .track:before {
-  height: 10px;
-  width: 10px;
-  left: 5px;
-  bottom: 5px;
-  background-color: var(--neutral-primary);
-  border-radius: 5px;
-}
-
-.chrome input:checked + .track:before {
+input:checked + .track:before {
   background-color: var(--primary);
   transform: translateX(11px);
   height: 16px;
@@ -178,22 +146,8 @@ button {
   bottom: -2px;
 }
 
-.edge input:checked + .track:before {
-  background-color: var(--background);
-  transform: translateX(20px);
-  height: 10px;
-  width: 10px;
-  left: 5px;
-  bottom: 5px;
-}
-
-.chrome input:checked + .track {
+input:checked + .track {
   background-color: var(--track-active);
-}
-
-.edge input:checked + .track {
-  background-color: var(--primary);
-  box-shadow: none;
 }
 
 select {
@@ -204,20 +158,12 @@ select {
   height: 32px;
   padding: 0 40px 0 8px;
   cursor: pointer;
-}
-
-.chrome select {
   background-color: var(--neutral-quaternary);
   border-radius: 4px;
+  min-width: 200px;
 }
 
-.edge select {
-  background-color: transparent;
-  border-radius: 2px;
-  box-shadow: inset 0px 0px 0px 1px var(--neutral-secondary);
-}
-
-.chrome select:focus {
+select:focus {
   box-shadow: 0px 0px 0px 2px var(--track-active);
 }
 
@@ -226,6 +172,7 @@ select {
   align-items: center;
   justify-content: space-between;
   position: relative;
+  color: var(--neutral-primary);
 }
 
 .select:after {
@@ -274,4 +221,11 @@ select {
   -webkit-mask-image: url(../images/external.svg);
   mask-image: url(../images/external.svg);
   background-color: var(--neutral-secondary);
+}
+
+.version {
+  color: var(--neutral-secondary);
+  text-align: center;
+  font-size: 13px;
+  margin-top: 20px;
 }

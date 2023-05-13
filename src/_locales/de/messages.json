@@ -20,6 +20,9 @@
   "RATE": {
     "message": "On bewerten"
   },
+  "SHORTCUT": {
+    "message": "Verknüpfung"
+  },
   "OPTIONS_SOUNDS": {
     "message": "Töne"
   },
@@ -28,11 +31,5 @@
   },
   "OPTIONS_AUTO_DOWNLOAD": {
     "message": "Aktivieren während des Herunterladens von Dateien"
-  },
-  "OPTIONS_AUTO_DOWNLOAD_MORE": {
-    "message": "Automatisch aktivieren, wenn ein Download beginnt"
-  },
-  "OPTIONS_SOUNDS_MORE": {
-    "message": "Ein Geräusch abspielen, wenn die Erweiterung aktiviert/deaktiviert wird"
   }
 }

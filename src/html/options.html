@@ -11,10 +11,9 @@
       <h1 data-localize="OPTIONS"></h1>
       <h2 class="heading" data-localize="GENERAL"></h2>
       <div class="container">
-        <label for="sounds" class="row row-multiple">
+        <label for="sounds" class="row row-single">
           <div class="left-detail">
             <p class="label" data-localize="OPTIONS_SOUNDS"></p>
-            <p class="subtitle" data-localize="OPTIONS_SOUNDS_MORE">P</p>
           </div>
           <div class="right-detail">
             <label class="switch">
@@ -34,10 +33,9 @@
             </label>
           </div>
         </label>
-        <label for="autoDownloads" class="row row-multiple">
+        <label for="autoDownloads" class="row row-single">
           <div class="left-detail">
             <p class="label" data-localize="OPTIONS_AUTO_DOWNLOAD"></p>
-            <p class="subtitle" data-localize="OPTIONS_AUTO_DOWNLOAD_MORE"></p>
           </div>
           <div class="right-detail">
             <label class="switch">
@@ -49,7 +47,15 @@
       </div>
       <h2 class="heading" data-localize="EXTENSION"></h2>
       <div class="container">
-        <label class="row row-single">
+        <label for="shortcut" class="row row-single">
+          <div class="left-detail">
+            <button id="shortcut" data-localize="SHORTCUT"></button>
+          </div>
+          <div class="right-detail">
+            <div class="external"></div>
+          </div>
+        </label>
+        <label for="rate" class="row row-single">
           <div class="left-detail">
             <button id="rate" data-localize="RATE"></button>
           </div>
@@ -58,6 +64,7 @@
           </div>
         </label>
       </div>
+      <p id="version" class="version"></p>
     </div>
   </body>
 </html>

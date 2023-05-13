@@ -20,6 +20,9 @@
   "RATE": {
     "message": "Calificar On"
   },
+  "SHORTCUT": {
+    "message": "Atajo"
+  },
   "OPTIONS_SOUNDS": {
     "message": "Sonidos"
   },
@@ -28,11 +31,5 @@
   },
   "OPTIONS_AUTO_DOWNLOAD": {
     "message": "Activar mientras se descargan archivos"
-  },
-  "OPTIONS_AUTO_DOWNLOAD_MORE": {
-    "message": "Activar automáticamente cuando comienza una descarga"
-  },
-  "OPTIONS_SOUNDS_MORE": {
-    "message": "Reproducir un sonido al activar/desactivar la extensión"
   }
 }
