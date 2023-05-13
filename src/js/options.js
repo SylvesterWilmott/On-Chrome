@@ -21,12 +21,6 @@ async function init () {
 }
 
 function setupDocument () {
-  if (isEdge()) {
-    document.body.classList.add('edge')
-  } else {
-    document.body.classList.add('chrome')
-  }
-
   const animatedElements = document.querySelectorAll('.no-transition')
 
   for (const el of animatedElements) {
@@ -47,6 +41,10 @@ function setupDocument () {
 
     el.classList.remove('no-transition')
   }
+
+  const versionElement = document.getElementById('version')
+  const version = `v${chrome.runtime.getManifest().version}`
+  versionElement.innerText = version
 
   document.body.classList.remove('hidden')
 }
@@ -144,13 +142,15 @@ async function onButtonClicked (e) {
   const targetId = target.id
 
   if (targetId === 'rate') {
-    let url
+    let url = `https://chrome.google.com/webstore/detail/${chrome.runtime.id}/reviews`
 
-    if (isEdge()) {
-      url = `https://microsoftedge.microsoft.com/addons/detail/${chrome.runtime.id}/ratings-and-reviews`
-    } else {
-      url = `https://chrome.google.com/webstore/detail/${chrome.runtime.id}/reviews`
+    try {
+      await tabs.create(url)
+    } catch (error) {
+      console.error('An error occurred:', error)
     }
+  } else if (targetId === 'shortcut') {
+    let url = 'chrome://extensions/shortcuts'
 
     try {
       await tabs.create(url)
@@ -158,13 +158,4 @@ async function onButtonClicked (e) {
       console.error('An error occurred:', error)
     }
   }
-}
-
-function isEdge () {
-  for (const agent of navigator.userAgentData.brands) {
-    if (agent.brand === 'Microsoft Edge') {
-      return true
-    }
-  }
-  return false
 }

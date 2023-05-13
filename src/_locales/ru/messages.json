@@ -20,6 +20,9 @@
   "RATE": {
     "message": "Оценить On"
   },
+  "SHORTCUT": {
+    "message": "Ярлык"
+  },
   "OPTIONS_SOUNDS": {
     "message": "Звуки"
   },
@@ -28,11 +31,5 @@
   },
   "OPTIONS_AUTO_DOWNLOAD": {
     "message": "Активировать во время загрузки файлов"
-  },
-  "OPTIONS_AUTO_DOWNLOAD_MORE": {
-    "message": "Автоматически активировать при начале загрузки"
-  },
-  "OPTIONS_SOUNDS_MORE": {
-    "message": "Проигрывать звук при активации/деактивации расширения"
   }
 }

@@ -20,6 +20,9 @@
   "RATE": {
     "message": "Rate On"
   },
+  "SHORTCUT": {
+    "message": "Shortcut"
+  },
   "OPTIONS_SOUNDS": {
     "message": "Sounds"
   },
@@ -28,11 +31,5 @@
   },
   "OPTIONS_AUTO_DOWNLOAD": {
     "message": "Activate while downloading files"
-  },
-  "OPTIONS_AUTO_DOWNLOAD_MORE": {
-    "message": "Automatically activate when a download starts"
-  },
-  "OPTIONS_SOUNDS_MORE": {
-    "message": "Play a sound when activating/deactivating the extension"
   }
 }

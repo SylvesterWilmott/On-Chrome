@@ -20,6 +20,9 @@
   "RATE": {
     "message": "Noter On"
   },
+  "SHORTCUT": {
+    "message": "Raccourci"
+  },
   "OPTIONS_SOUNDS": {
     "message": "Sons"
   },
@@ -28,11 +31,5 @@
   },
   "OPTIONS_AUTO_DOWNLOAD": {
     "message": "Activer pendant le téléchargement de fichiers"
-  },
-  "OPTIONS_AUTO_DOWNLOAD_MORE": {
-    "message": "Activer automatiquement lorsqu'un téléchargement démarre"
-    },
-    "OPTIONS_SOUNDS_MORE": {
-    "message": "Jouer un son lors de l'activation/désactivation de l'extension"
-    }
+  }
 }
