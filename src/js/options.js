@@ -21,6 +21,12 @@ async function init () {
 }
 
 function setupDocument () {
+  if (isEdge()) {
+    document.body.classList.add('edge')
+  } else {
+    document.body.classList.add('chrome')
+  }
+
   const animatedElements = document.querySelectorAll('.no-transition')
 
   for (const el of animatedElements) {
@@ -60,17 +66,11 @@ function registerListeners () {
 }
 
 async function restorePreferences () {
-  let storedPreferences
-
-  try {
-    storedPreferences = await storage.load(
-      'preferences',
-      storage.preferenceDefaults
-    )
-  } catch (error) {
-    console.error('An error occurred:', error)
-    return
-  }
+  const storedPreferences = await storage
+    .load('preferences', storage.preferenceDefaults)
+    .catch((error) => {
+      console.error('An error occurred:', error)
+    })
 
   for (const preferenceName in storedPreferences) {
     const preferenceObj = storedPreferences[preferenceName]
@@ -86,15 +86,12 @@ async function onCheckBoxChanged (e) {
   const target = e.target
   const targetId = target.id
 
-  let storedPreferences
-
-  try {
-    storedPreferences = await storage.load('preferences', storage.preferenceDefaults)
-  } catch (error) {
-    console.error('An error occurred:', error)
-    target.checked = !target.checked
-    return
-  }
+  const storedPreferences = await storage
+    .load('preferences', storage.preferenceDefaults)
+    .catch((error) => {
+      console.error('An error occurred:', error)
+      target.checked = !target.checked
+    })
 
   const preference = storedPreferences[targetId]
 
@@ -147,11 +144,27 @@ async function onButtonClicked (e) {
   const targetId = target.id
 
   if (targetId === 'rate') {
+    let url
+
+    if (isEdge()) {
+      url = `https://microsoftedge.microsoft.com/addons/detail/${chrome.runtime.id}/ratings-and-reviews`
+    } else {
+      url = `https://chrome.google.com/webstore/detail/${chrome.runtime.id}/reviews`
+    }
+
     try {
-      const url = `https://chrome.google.com/webstore/detail/${chrome.runtime.id}/reviews`
       await tabs.create(url)
     } catch (error) {
       console.error('An error occurred:', error)
     }
   }
+}
+
+function isEdge () {
+  for (const agent of navigator.userAgentData.brands) {
+    if (agent.brand === 'Microsoft Edge') {
+      return true
+    }
+  }
+  return false
 }
